@@ -65,8 +65,8 @@ def main():
     st.sidebar.write(f"MODEL_ARN: {MODEL_ARN or '❌ Not Set'}")
     st.sidebar.markdown("---")
     st.sidebar.markdown(
-    '<a href="http://howitworksrazorpay.s3-website-us-east-1.amazonaws.com/" target="_blank">📄 How it works</a>',
-    unsafe_allow_html=True)
+    "📄 [How it works](http://howitworksrazorpay.s3-website-us-east-1.amazonaws.com)")
+
 
     preset_questions = [
         "List all the OWASP Top 10 for LLMs?",
