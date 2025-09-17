@@ -64,14 +64,9 @@ def main():
     st.sidebar.write(f"KB_ID: {KB_ID or '❌ Not Set'}")
     st.sidebar.write(f"MODEL_ARN: {MODEL_ARN or '❌ Not Set'}")
     st.sidebar.markdown("---")
-    try:
-        with open("how_it_works.html", "r", encoding="utf-8") as f:
-            with st.sidebar:   # 👈 put it in the sidebar context
-                components.html(f.read(), height=400, scrolling=True)
-    except FileNotFoundError:
-        st.sidebar.warning("⚠️ How it works page not found.")
-    
-        # st.sidebar.markdown("📄 [How it works](how_it_works.html)", unsafe_allow_html=True)
+    st.sidebar.markdown(
+    '<a href="http://howitworksrazorpay.s3-website-us-east-1.amazonaws.com/" target="_blank">📄 How it works</a>',
+    unsafe_allow_html=True)
 
     preset_questions = [
         "List all the OWASP Top 10 for LLMs?",
