@@ -21,8 +21,8 @@ except Exception as e:
     logger.error("Failed to initialize AWS clients: %s", e)
     raise
 
-KB_ID = os.getenv("BEDROCK_KB_ID")
-MODEL_ARN = os.getenv("MODEL_ARN")
+KB_ID = st.secrets("BEDROCK_KB_ID")
+MODEL_ARN = st.secrets("MODEL_ARN")
 
 if not KB_ID or not MODEL_ARN:
     logger.warning("BEDROCK_KB_ID or MODEL_ARN not set in environment variables!")
