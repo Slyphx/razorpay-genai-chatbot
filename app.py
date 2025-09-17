@@ -21,8 +21,9 @@ except Exception as e:
     logger.error("Failed to initialize AWS clients: %s", e)
     raise
 
-KB_ID = st.secrets("BEDROCK_KB_ID")
-MODEL_ARN = st.secrets("MODEL_ARN")
+KB_ID = st.secrets["BEDROCK_KB_ID"]
+MODEL_ARN = st.secrets["MODEL_ARN"]
+
 
 if not KB_ID or not MODEL_ARN:
     logger.warning("BEDROCK_KB_ID or MODEL_ARN not set in environment variables!")
@@ -52,6 +53,7 @@ def get_kb_response(question: str) -> str:
         traceback.print_exc()
         return f"Error querying KB: {e}"
 
+
 def main():
     st.set_page_config(page_title="Razorpay KB Chatbot", page_icon="💬", layout="centered")
     st.header("💬 Chat with Razorpay Knowledge Base")
@@ -60,7 +62,13 @@ def main():
     st.sidebar.write(f"KB_ID: {KB_ID or '❌ Not Set'}")
     st.sidebar.write(f"MODEL_ARN: {MODEL_ARN or '❌ Not Set'}")
     st.sidebar.markdown("---")
-    st.sidebar.markdown("📄 [How it works](how_it_works.html)", unsafe_allow_html=True)
+    try:
+        with open("how_it_works.html", "r", encoding="utf-8") as f:
+         st.sidebar.components.v1.html(f.read(), height=400, scrolling=True)
+    except FileNotFoundError:
+        st.sidebar.warning("⚠️ How it works page not found.")
+
+    # st.sidebar.markdown("📄 [How it works](how_it_works.html)", unsafe_allow_html=True)
 
     preset_questions = [
         "List all the OWASP Top 10 for LLMs?",
