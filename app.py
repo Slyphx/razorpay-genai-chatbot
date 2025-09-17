@@ -64,8 +64,8 @@ def main():
     # st.sidebar.write(f"KB_ID: {KB_ID or '❌ Not Set'}")
     st.sidebar.write(f"MODEL_ARN: {MODEL_ARN or '❌ Not Set'}")
     st.sidebar.markdown("---")
-    st.sidebar.markdown(
-    "📄 [How it works](http://howitworksrazorpay.s3-website-us-east-1.amazonaws.com)")
+    st.sidebar.markdown("📄 [How it works](http://howitworksrazorpay.s3-website-us-east-1.amazonaws.com)")
+
 
 
     preset_questions = [
