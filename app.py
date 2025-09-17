@@ -58,9 +58,9 @@ def get_kb_response(question: str) -> str:
 
 def main():
     st.set_page_config(page_title="Razorpay KB Chatbot", page_icon="💬", layout="centered")
-    st.header("💬 Chat with Razorpay Knowledge Base")
+    st.header("Chat with Razorpay Knowledge Base")
 
-    st.sidebar.header("🔎 Debug Info")
+    st.sidebar.header("Debug Info")
     # st.sidebar.write(f"KB_ID: {KB_ID or '❌ Not Set'}")
     st.sidebar.write(f"MODEL_ARN: {MODEL_ARN or '❌ Not Set'}")
     st.sidebar.markdown("---")
