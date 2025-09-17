@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>How This Chatbot Works</title>
+  <style>
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+      background: #f8f9fa;
+      color: #212529;
+    }
+    header {
+      background: #0d1b2a;
+      color: white;
+      padding: 1rem 2rem;
+    }
+    header h1 {
+      margin: 0;
+    }
+    main {
+      padding: 2rem;
+      max-width: 900px;
+      margin: auto;
+    }
+    section {
+      margin-bottom: 2rem;
+    }
+    h2 {
+      color: #007bff;
+    }
+    code {
+      background: #e9ecef;
+      padding: 0.2rem 0.4rem;
+      border-radius: 4px;
+      font-family: monospace;
+    }
+    .diagram {
+      background: white;
+      border: 1px solid #ccc;
+      padding: 1rem;
+      border-radius: 8px;
+      margin: 1rem 0;
+    }
+    img{
+        border: 1px solid black;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Razorpay AI Knowledge Base Chatbot – How It Works</h1>
+  </header>
+
+  <main>
+    <section>
+      <h2>1. User Interface</h2>
+      <p>
+        The chatbot is built with <b>Streamlit</b>, which provides a clean web UI.  
+        Users can type their queries in a chat-style interface or click on preset example questions.
+      </p>
+    </section>
+
+    <img src="./assets/flow.jpg" alt="AI workflow" width="900"/>
+
+
+    <section>
+      <h2>2. Knowledge Base</h2>
+      <p>
+        We use <b>AWS Bedrock Knowledge Bases</b> to store and retrieve information.  
+        - Documents (PDFs, text, etc.) are ingested into an <b>Amazon OpenSearch Serverless (vector index)</b>.  
+        - Bedrock automatically creates embeddings and indexes the docs.  
+        - At query time, relevant chunks are retrieved from the KB.
+      </p>
+    </section>
+
+    <section>
+      <h2>3. Model</h2>
+      <p>
+        The project uses <code>mistral.mistral-small-2402-v1:0</code> hosted on Bedrock.  
+        The model receives both:
+        <ul>
+          <li>The user’s query (<code>{{user_input}}</code>)</li>
+          <li>Relevant context retrieved from the KB (<code>{{knowledge_base_context}}</code>)</li>
+        </ul>
+        It then generates a grounded, context-aware answer.
+      </p>
+    </section>
+
+    <section>
+      <h2>4. Backend</h2>
+      <p>
+        The Streamlit app calls the <code>bedrock-agent-runtime.retrieve_and_generate</code> API.  
+        This API performs Retrieval-Augmented Generation (RAG):
+      </p>
+      <div class="diagram">
+        <b>Flow:</b><br>
+        User → Streamlit App → Bedrock (Retrieve + Generate) → KB (OpenSearch) → Model → Answer
+      </div>
+    </section>
+
+    <img src="./assets/S3.png" alt="AI workflow" width="900"/>
+    <img src="./assets/KB.png" alt="AI workflow" width="900"/>
+    <img src="./assets/mistral.png" alt="AI workflow" width="445"/>
+    <img src="./assets/titan.png" style="padding-bottom: 7px;" alt="AI workflow" width="445"/>
+
+
+  </main>
+</body>
+</html>
