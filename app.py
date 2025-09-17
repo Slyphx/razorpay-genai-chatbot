@@ -61,7 +61,7 @@ def main():
     st.header("💬 Chat with Razorpay Knowledge Base")
 
     st.sidebar.header("🔎 Debug Info")
-    st.sidebar.write(f"KB_ID: {KB_ID or '❌ Not Set'}")
+    # st.sidebar.write(f"KB_ID: {KB_ID or '❌ Not Set'}")
     st.sidebar.write(f"MODEL_ARN: {MODEL_ARN or '❌ Not Set'}")
     st.sidebar.markdown("---")
     st.sidebar.markdown(
